@@ -15,7 +15,7 @@ output application/json
 {
   productID: "12345678",
   productName: "Channel No. 5",
-  productProvider: "Coco Channel UK",
+  productProvider: "Coco Channel U.K.",
   productDescription: "EDP For Women"
 } as Object {encoding: "UTF-8", mediaType: "application/json"}]]></ee:set-payload>
             </ee:message>
