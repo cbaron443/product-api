@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 // 1. Reference your specific ID here . The ID given in the Managed File for maven settings.xml
-                configFileProvider([configFile(fieldId: 'mule-maven-setting-from-m2localxml', variable: 'MVN_SETTINGS']) {
+                configFileProvider([configFile(fileId: 'mule-maven-setting-from-m2localxml', variable: 'MVN_SETTINGS')]) {
                 
                 	// 2. Pass the temporary file path to Maven using -s
                 	bat 'mvn -B -U -e -V clean package -DskipTests -s %MVN_SETTINGS%'
