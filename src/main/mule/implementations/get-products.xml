@@ -13,9 +13,9 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 output application/json
 ---
 {
-  productID: "12345678",
+  productID: "123456789",
   productName: "Channel No-5",
-  productProvider: "Coco Channel",
+  productProvider: "Coco De Channel",
   productDescription: "EDP For Women"
 } as Object {encoding: "UTF-8", mediaType: "application/json"}]]></ee:set-payload>
             </ee:message>
