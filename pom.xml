@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>d07783d7-7ed3-42f7-8e11-bae934da135c</groupId>
 	<artifactId>product-api-app</artifactId>
-	<version>1.0.5</version>
+	<version>1.0.6</version>
 	<packaging>mule-application</packaging>
 
 	<name>product-api-app</name>
@@ -17,68 +15,68 @@
 
 		<app.runtime>4.9.0</app.runtime>
 		<mule.maven.plugin.version>4.3.0</mule.maven.plugin.version>
+		<munit.version>3.4.0</munit.version>
 	</properties>
 
 	<profiles>
-	<profile>
-		<id>DEV</id>
-		<build>
-			<plugins>
-				<plugin>
-					<groupId>org.mule.tools.maven</groupId>
-					<artifactId>mule-maven-plugin</artifactId>
-					<version>${mule.maven.plugin.version}</version>
-					<extensions>true</extensions>
-					<configuration>
-						<cloudhub2Deployment>
-							<environment>DEV</environment>
-							<target>Cloudhub-US-East-2</target>
-							<applicationName>dev-product-api-app</applicationName>
-							<replicas>1</replicas>
-							<vCores>0.1</vCores>
-							<properties>
-								<env>DEV</env>
-								<api.id>20658952</api.id>
-								<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
-								<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
-							</properties>
-						</cloudhub2Deployment>
-					</configuration>
-				</plugin>
-			</plugins>
-		</build>
-	</profile>
+		<profile>
+			<id>DEV</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.mule.tools.maven</groupId>
+						<artifactId>mule-maven-plugin</artifactId>
+						<version>${mule.maven.plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<cloudhub2Deployment>
+								<environment>DEV</environment>
+								<target>Cloudhub-US-East-2</target>
+								<applicationName>dev-product-api-app</applicationName>
+								<replicas>1</replicas>
+								<vCores>0.1</vCores>
+								<properties>
+									<env>DEV</env>
+									<api.id>20658952</api.id>
+									<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
+									<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
+								</properties>
+							</cloudhub2Deployment>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 
-	<profile>
-		<id>TEST</id>
-		<build>
-			<plugins>
-				<plugin>
-					<groupId>org.mule.tools.maven</groupId>
-					<artifactId>mule-maven-plugin</artifactId>
-					<version>${mule.maven.plugin.version}</version>
-					<extensions>true</extensions>
-					<configuration>
-						<cloudhub2Deployment>
-							<environment>TEST</environment>
-							<target>Cloudhub-US-East-2</target>
-							<applicationName>test-product-api-app</applicationName>
-							<replicas>1</replicas>
-							<vCores>0.1</vCores>
-							<properties>
-								<env>TEST</env>
-								<api.id>20658958</api.id>
-								<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
-								<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
-							</properties>
-						</cloudhub2Deployment>
-					</configuration>
-				</plugin>
-			</plugins>
-		</build>
-	</profile>
-</profiles>
-
+		<profile>
+			<id>TEST</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.mule.tools.maven</groupId>
+						<artifactId>mule-maven-plugin</artifactId>
+						<version>${mule.maven.plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<cloudhub2Deployment>
+								<environment>TEST</environment>
+								<target>Cloudhub-US-East-2</target>
+								<applicationName>test-product-api-app</applicationName>
+								<replicas>1</replicas>
+								<vCores>0.1</vCores>
+								<properties>
+									<env>TEST</env>
+									<api.id>20658958</api.id>
+									<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
+									<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
+								</properties>
+							</cloudhub2Deployment>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<build>
 		<plugins>
@@ -109,6 +107,29 @@
 							<anypoint.platform.analytics_base_uri>https://analytics-ingest.anypoint.mulesoft.com</anypoint.platform.analytics_base_uri>
 						</properties>
 					</cloudhub2Deployment>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.mulesoft.munit.tools</groupId>
+				<artifactId>munit-maven-plugin</artifactId>
+				<version>${munit.version}</version>
+				<executions>
+					<execution>
+						<id>test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<coverage>
+						<runCoverage>true</runCoverage>
+						<formats>
+							<format>html</format>
+						</formats>
+					</coverage>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -148,6 +169,26 @@
 			<artifactId>mule-apikit-module</artifactId>
 			<version>1.11.3</version>
 			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.munit</groupId>
+			<artifactId>munit-runner</artifactId>
+			<version>3.4.0</version>
+			<classifier>mule-plugin</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.munit</groupId>
+			<artifactId>munit-tools</artifactId>
+			<version>3.4.0</version>
+			<classifier>mule-plugin</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.weave</groupId>
+			<artifactId>assertions</artifactId>
+			<version>1.2.1</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
