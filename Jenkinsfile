@@ -14,9 +14,28 @@ pipeline {
                 }      
             }
         }
-        stage('Test') {
+        stage('MUnit Test') {
             steps {
-                echo 'Testing..'
+                echo 'Executing MUnit Test Cases...'
+                configFileProvider([configFile(fileId: 'mule-maven-setting-from-m2localxml', variable: 'MVN_SETTINGS')]) {
+                    // Use 'mvn test' to trigger MUnit execution exclusively
+                    bat 'mvn test -s %MVN_SETTINGS%'
+                }
+            }
+            post {
+                always {
+                    // Automatically publish test results to the Jenkins UI
+                    junit '**/target/surefire-reports/*.xml'
+                }
+            }
+        }
+        
+        stage('Publish to Local Nexus') {
+            steps {
+                echo 'Archiving to Local Nexus...'
+                configFileProvider([configFile(fileId: 'mule-maven-setting-from-m2localxml', variable: 'MVN_SETTINGS')]) {
+                    bat 'mvn deploy -DskipTests -s %MVN_SETTINGS% -DaltDeploymentRepository=local-nexus-snapshots::default::http://your-nexus-ip:8081/repository/maven-snapshots/'
+                }
             }
         }
         
