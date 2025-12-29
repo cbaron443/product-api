@@ -217,6 +217,13 @@
 		</repository>
 
 		<repository>
+			<id>mulesoft-public</id>
+			<name>MuleSoft Public Repository</name>
+			<url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
+			<layout>default</layout>
+		</repository>
+
+		<repository>
 			<id>anypoint-connected-app</id>
 			<name>Corporate Repository</name>
 			<url>https://maven.anypoint.mulesoft.com/api/v2/organizations/${project.groupId}/maven</url>
