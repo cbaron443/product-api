@@ -126,6 +126,7 @@
 					</execution>
 				</executions>
 				<configuration>
+					<runtimeProduct>MULE</runtimeProduct>
 					<coverage>
 						<runCoverage>true</runCoverage>
 						<formats>
