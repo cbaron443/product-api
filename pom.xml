@@ -216,13 +216,10 @@
 		</repository>
 
 		<repository>
-			<id>MuleRepository</id>
-			<name>MuleRepository</name>
-			<url>https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/</url>
+			<id>mulesoft-public</id>
+			<name>MuleSoft Public Repository</name>
+			<url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
 			<layout>default</layout>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
 		</repository>
 
 	</repositories>
@@ -239,13 +236,10 @@
 		</pluginRepository>
 
 		<pluginRepository>
-			<id>MuleRepository</id>
-			<name>MuleRepository</name>
-			<url>https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/</url>
+			<id>mulesoft-public</id>
+			<name>MuleSoft Public Repository</name>
+			<url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
 			<layout>default</layout>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
 		</pluginRepository>
 	</pluginRepositories>
 

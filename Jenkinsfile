@@ -15,13 +15,23 @@ pipeline {
             }
         }
        
-	stage('Test') {
+		stage('Test') {
 	    steps {
-	        echo 'Running MUnit Tests..'
+	        echo 'Testing and Refreshing Dependencies...'
+	        // Reference the same Managed File ID used in your Build stage
 	        configFileProvider([configFile(fileId: 'mule-maven-setting-from-m2localxml', variable: 'MVN_SETTINGS')]) {
-	            // We run 'test' goal. 
-	            // -DruntimeProduct=mule allows it to run on the community-oriented engine if EE isn't available
-	            bat 'mvn test -s %MVN_SETTINGS%'
+	            
+	            // -B: Batch mode (prevents log clutter)
+	            // -U: Force update of dependencies (fixes the "cached 401" issue)
+	            // -e: Produce execution error messages (helpful for debugging)
+	            bat 'mvn clean test -B -U -e -s %MVN_SETTINGS%'
+	            
+	        }
+	    }
+	    post {
+	        always {
+	            // This captures the MUnit results so Jenkins can show you the success/fail trends
+	            junit '**/target/surefire-reports/*.xml'
 	        }
 	    }
 	}
