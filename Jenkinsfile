@@ -14,11 +14,17 @@ pipeline {
                 }      
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
+       
+	stage('Test') {
+	    steps {
+	        echo 'Running MUnit Tests..'
+	        configFileProvider([configFile(fileId: 'mule-maven-setting-from-m2localxml', variable: 'MVN_SETTINGS')]) {
+	            // We run 'test' goal. 
+	            // -DruntimeProduct=mule allows it to run on the community-oriented engine if EE isn't available
+	            bat 'mvn test -s %MVN_SETTINGS%'
+	        }
+	    }
+	}
         
         stage('Publish to Exchange') {
         	steps {
