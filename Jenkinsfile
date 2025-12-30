@@ -24,7 +24,7 @@ pipeline {
 	            // -B: Batch mode (prevents log clutter)
 	            // -U: Force update of dependencies (fixes the "cached 401" issue)
 	            // -e: Produce execution error messages (helpful for debugging)
-	            bat 'mvn clean test -B -U -e -s %MVN_SETTINGS%'
+	            bat 'mvn clean test -B -U -e -DruntimeProduct=MULE -s %MVN_SETTINGS%'
 	            
 	        }
 	    }
