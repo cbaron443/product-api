@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>d07783d7-7ed3-42f7-8e11-bae934da135c</groupId>
 	<artifactId>product-api-app</artifactId>
-	<version>1.0.9</version>
+	<version>1.0.7</version>
 	<packaging>mule-application</packaging>
 
 	<name>product-api-app</name>
@@ -126,7 +124,6 @@
 					</execution>
 				</executions>
 				<configuration>
-					<runtimeProduct>MULE</runtimeProduct>
 					<coverage>
 						<runCoverage>true</runCoverage>
 						<formats>
@@ -216,13 +213,6 @@
 			<layout>default</layout>
 		</repository>
 
-		<repository>
-			<id>mulesoft-public</id>
-			<name>MuleSoft Public Repository</name>
-			<url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
-			<layout>default</layout>
-		</repository>
-
 	</repositories>
 
 	<pluginRepositories>
@@ -234,13 +224,6 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</pluginRepository>
-
-		<pluginRepository>
-			<id>mulesoft-public</id>
-			<name>MuleSoft Public Repository</name>
-			<url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
-			<layout>default</layout>
 		</pluginRepository>
 	</pluginRepositories>
 
